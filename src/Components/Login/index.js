@@ -72,8 +72,15 @@ export default function Index() {
               <PhoneRounded  color={"primary"} />
             </InputAdornment>
           ),
-        }} disabled={error} error={error} fullWidth variant="standard" label="Phone Number" type="text" onChange={(e)=>{
+        }} disabled={error} error={error} fullWidth variant="standard" label="Phone Number" type="text" value={phone_number} onChange={(e)=>{
+                   console.log(e.target.value);
+          if (phone_number.length<=10)
                       setPhoneNumber(e.target.value);
+                    else if (phone_number.length===10){
+                      if (e.target.value<11){
+                        setPhoneNumber(e.target.value);
+                      }
+                    }
                      
                    }}>
 
@@ -86,16 +93,26 @@ export default function Index() {
             
             <div style={{textAlign:"center" , marginTop:"1%"}}>
                 <Button variant="contained" style={{width:"100px",}}  disabled={loading} onClick={async (e)=>{
-                  function getLocation() {
+                  async function getLocation() {
                     if (navigator.geolocation) {
-                      navigator.geolocation.getCurrentPosition((pos)=>{
-                        postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
+                      navigator.geolocation.getCurrentPosition( async (pos)=>{
+                        await postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
+                        navigate("/product");
                       });
+                      
                     } else { 
                       postRequest(api_1,{phone:phone_number})
+                      navigate("/product");
                     }
                   }
-                 navigate("/product");
+                  try{
+                  await getLocation();
+                  
+                
+                  }
+                  catch(e){
+                    console.log(e);
+                  }
 // setLoading(true)
 // try{
 //     // console.log(details)
