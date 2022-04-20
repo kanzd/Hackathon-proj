@@ -73,11 +73,11 @@ export default function Index() {
             </InputAdornment>
           ),
         }} disabled={error} error={error} fullWidth variant="standard" label="Phone Number" type="text" value={phone_number} onChange={(e)=>{
-                   console.log(e.target.value);
-          if (phone_number.length<=10)
+                   console.log(e.target.value,e.target.value.length,phone_number.length);
+          if (phone_number.length<10)
                       setPhoneNumber(e.target.value);
                     else if (phone_number.length===10){
-                      if (e.target.value<11){
+                      if (e.target.value.length<10){
                         setPhoneNumber(e.target.value);
                       }
                     }
