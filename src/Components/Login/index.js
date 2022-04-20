@@ -97,11 +97,13 @@ export default function Index() {
                     if (navigator.geolocation) {
                       navigator.geolocation.getCurrentPosition( async (pos)=>{
                         await postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
+                        window.sessionStorage.setItem("phone_number",phone_number);
                         navigate("/product");
                       });
                       
                     } else { 
-                      postRequest(api_1,{phone:phone_number})
+                      await postRequest(api_1,{phone:phone_number})
+                      window.sessionStorage.setItem("phone_number",phone_number);
                       navigate("/product");
                     }
                   }

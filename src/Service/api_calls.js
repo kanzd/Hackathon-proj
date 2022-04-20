@@ -6,3 +6,9 @@ export  async function postRequest(link,data){
 
 
 }
+export  async function getRequest(link){
+    var res = await axios.get(link);
+    return res.data;
+
+
+}
