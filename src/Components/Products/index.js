@@ -48,6 +48,8 @@ export default function Index() {
         <Button size="small">Share</Button>
         <Button size="small" onClick={(e)=>{
           navigate("/checkout");
+          window.sessionStorage.setItem("image",One);
+          window.sessionStorage.setItem("name","Shoes");
         }}>Buy Now</Button>
       </CardActions>
     </Card>
@@ -72,6 +74,8 @@ export default function Index() {
         <Button size="small">Share</Button>
         <Button size="small"  onClick={(e)=>{
           navigate("/checkout");
+          window.sessionStorage.setItem("image",Two);
+          window.sessionStorage.setItem("name","Mac Book Pro");
         }}>Buy Now</Button>
       </CardActions>
     </Card>
@@ -96,6 +100,8 @@ export default function Index() {
         <Button size="small">Share</Button>
         <Button size="small"  onClick={(e)=>{
           navigate("/checkout");
+          window.sessionStorage.setItem("image",Three);
+          window.sessionStorage.setItem("name",'I-Phone');
         }}>Buy Now</Button>
       </CardActions>
     </Card>
