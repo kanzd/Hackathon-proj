@@ -72,9 +72,16 @@ export default function Index() {
               <PhoneRounded  color={"primary"} />
             </InputAdornment>
           ),
-        }} disabled={error} error={error} fullWidth variant="standard" label="Phone Number" type="text" value={phone_number} onChange={(e)=>{
+        }}  error={error} fullWidth variant="standard" label="Phone Number" type="text" value={phone_number} onChange={(e)=>{
                    console.log(e.target.value,e.target.value.length,phone_number.length);
-          if (phone_number.length<10)
+                   var numbers = /^[0-9]+$/;
+                   if(!e.target.value.match(numbers)){
+                    setErrors(true)
+                   }
+                   else{
+                    setErrors(false)
+                   }
+                   if (phone_number.length<10)
                       setPhoneNumber(e.target.value);
                     else if (phone_number.length===10){
                       if (e.target.value.length<10){

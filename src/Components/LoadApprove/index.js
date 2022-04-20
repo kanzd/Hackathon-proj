@@ -23,7 +23,14 @@ export default function Index() {
     <div>
          <ThemeProvider theme={theme}>
          <Navbar></Navbar>
-         <Typography> Loan Approve </Typography>
+
+         <Typography > 
+             <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",height:"80vh",fontSize:"30px",fontWeight:"bolder",color:"#0ace5f"}}>
+             Loan Approve
+             </div>
+             
+             
+              </Typography>
          </ThemeProvider>
     </div>
   )

@@ -1,9 +1,11 @@
-import React from 'react'
-import { ThemeProvider,Card,CardActionArea,CardActions,CardMedia,CardContent,Button,Typography,Grid, Container,Accordion,AccordionSummary,AccordionDetails } from "@mui/material";
+import React,{useState} from 'react'
+import { ThemeProvider,Card,CardActionArea,CardActions,CardMedia,CardContent,Button,Typography,Grid, Container,Accordion,AccordionSummary,AccordionDetails,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle } from "@mui/material";
 import { ExpandMore  } from "@mui/icons-material";
 import { createTheme } from "@mui/material/styles";
 import Image from "../../assets/Zest_logo_green.png";
 import { useNavigate } from "react-router-dom";
+import { getRequest } from "../../Service/api_calls";
+import { api_2 } from "../../const/apis_endpoints";
 import "./index.css";
 const theme = createTheme({palette: {
   primary: {
@@ -21,6 +23,7 @@ const theme = createTheme({palette: {
 },})
 export default function Index() {
   const navigate = useNavigate();
+  const [openDia,setOpenDia]=useState(false);
   return (
     <div>
       
@@ -67,8 +70,16 @@ export default function Index() {
               Total : $1200
             </div>
             <div style={{textAlign:"center"}}>
-            <Button variant="outlined" onClick={(e)=>{
+            <Button variant="outlined" onClick={async (e)=>{
+              
+               let phone_number=window.sessionStorage.getItem("phone_number");
+              let res = await getRequest(api_2(phone_number));
+              if (res.data.state){
               navigate("/loanapprove")
+              }
+              else{
+                setOpenDia(true);
+              }
             }}> Select </Button>
             </div>
             
@@ -98,7 +109,16 @@ export default function Index() {
               Total : $1200
             </div>
             <div style={{textAlign:"center"}}>
-            <Button variant="outlined"> Select </Button>
+            <Button variant="outlined" onClick={async (e)=>{
+              let phone_number=window.sessionStorage.getItem("phone_number");
+              let res = await getRequest(api_2(phone_number));
+              if (res.data.state){
+              navigate("/loanapprove")
+              }
+              else{
+                setOpenDia(true);
+              }
+            }}> Select </Button>
             </div>
           </Typography>
         </AccordionDetails>
@@ -127,7 +147,16 @@ export default function Index() {
               Total : $1200
             </div>
             <div style={{textAlign:"center"}}>
-            <Button variant="outlined"> Select </Button>
+            <Button variant="outlined" onClick={async (e)=>{
+              let phone_number=window.sessionStorage.getItem("phone_number");
+              let res = await getRequest(api_2(phone_number));
+              if (res.data.state){
+              navigate("/loanapprove")
+              }
+              else{
+                setOpenDia(true);
+              }
+            }}> Select </Button>
             </div>
           </Typography>
         </AccordionDetails>
@@ -138,6 +167,33 @@ export default function Index() {
           </div>
           </div>
         </Container>
+        <Dialog
+        open={openDia}
+        onClose={()=>{
+          setOpenDia(false);
+        }}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Some phishing detected"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Some Suspious activity detected so processing this request to IVR.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>{
+            navigate("/");
+          }}>Disagree</Button>
+          <Button onClick={()=>{
+          navigate("/loanapprove");
+          }} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
       </ThemeProvider>
     </div>
   )
