@@ -4,8 +4,11 @@ import {Login,VerifiedUser,PhoneRounded} from "@mui/icons-material";
 import { createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Image from "../../assets/Zest_logo_green.png";
+import { postRequest } from "../../Service/api_calls";
+import { api_1 } from "../../const/apis_endpoints";
 // import { MoonLoader,HashLoader,PuffLoader} from "react-spinners";
 import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 const theme = createTheme({palette: {
@@ -27,6 +30,7 @@ export default function Index() {
     const [details,setDetails] = useState({});
     const [loading,setLoading]=useState(false)
     const [error,setErrors]=useState(false);
+    const [phone_number,setPhoneNumber]=useState("");
     useEffect(()=>{
         var token = window.localStorage.getItem("user_token");
         if (token!==null){
@@ -69,7 +73,7 @@ export default function Index() {
             </InputAdornment>
           ),
         }} disabled={error} error={error} fullWidth variant="standard" label="Phone Number" type="text" onChange={(e)=>{
-                      
+                      setPhoneNumber(e.target.value);
                      
                    }}>
 
@@ -82,6 +86,15 @@ export default function Index() {
             
             <div style={{textAlign:"center" , marginTop:"1%"}}>
                 <Button variant="contained" style={{width:"100px",}}  disabled={loading} onClick={async (e)=>{
+                  function getLocation() {
+                    if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition((pos)=>{
+                        postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
+                      });
+                    } else { 
+                      postRequest(api_1,{phone:phone_number})
+                    }
+                  }
                  navigate("/product");
 // setLoading(true)
 // try{

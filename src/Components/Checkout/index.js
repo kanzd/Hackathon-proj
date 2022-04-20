@@ -3,6 +3,7 @@ import { ThemeProvider,Card,CardActionArea,CardActions,CardMedia,CardContent,But
 import { ExpandMore  } from "@mui/icons-material";
 import { createTheme } from "@mui/material/styles";
 import Image from "../../assets/Zest_logo_green.png";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 const theme = createTheme({palette: {
   primary: {
@@ -19,6 +20,7 @@ const theme = createTheme({palette: {
   },
 },})
 export default function Index() {
+  const navigate = useNavigate();
   return (
     <div>
       
@@ -44,7 +46,7 @@ export default function Index() {
           {window.sessionStorage.getItem("name")}
           </div>
           <div>
-            <div>
+            <div className='acc-compo'>
             <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMore />}
@@ -56,65 +58,81 @@ export default function Index() {
         <AccordionDetails>
           <Typography>
           <div>
-            Principal Interest : 1000 Rps 
+            Principal Interest : $1000
             </div>
             <div>
-              Fee : 200 Rps
+              Fee : $200
             </div>
             <div>
-              Total : 1200 Rps
+              Total : $1200
             </div>
+            <div style={{textAlign:"center"}}>
+            <Button variant="outlined" onClick={(e)=>{
+              navigate("/loanapprove")
+            }}> Select </Button>
+            </div>
+            
           </Typography>
         </AccordionDetails>
       </Accordion>
+   
             </div>
-            <div>
+            <div  className='acc-compo'>
             <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMore />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>3 Months EMI</Typography>
+          <Typography>6 Months EMI</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
           <div>
-            Principal Interest : 1000 Rps 
+            Principal Interest : $1000
             </div>
             <div>
-              Fee : 200 Rps
+              Fee : $200
             </div>
             <div>
-              Total : 1200 Rps
+              Total : $1200
+            </div>
+            <div style={{textAlign:"center"}}>
+            <Button variant="outlined"> Select </Button>
             </div>
           </Typography>
         </AccordionDetails>
       </Accordion>
+      
             </div>
-            <div>
+
+            <div className='acc-compo'>
             <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMore />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>3 Months EMI</Typography>
+          <Typography>12 Months EMI</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
           <div>
-            Principal Interest : 1000 Rps 
+            Principal Interest : $1000
             </div>
             <div>
-              Fee : 200 Rps
+              Fee : $200
             </div>
             <div>
-              Total : 1200 Rps
+              Total : $1200
+            </div>
+            <div style={{textAlign:"center"}}>
+            <Button variant="outlined"> Select </Button>
             </div>
           </Typography>
         </AccordionDetails>
       </Accordion>
+      
             </div>
       
           </div>

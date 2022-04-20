@@ -2,7 +2,7 @@ import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Login from "./Components/Login/index";
 import Checkout from "./Components/Checkout/index";
 import Product from "./Components/Products/index";
-
+import LoanApprove from "./Components/LoadApprove/index";
 function App() {
   return (
     <>
@@ -16,6 +16,9 @@ function App() {
       <Route path="/product" element={<Product />}>
 
       </Route>
+      <Route path="/loanapprove" element={<LoanApprove />}>
+
+</Route>
     </Routes>
     </BrowserRouter>
     </>
