@@ -74,7 +74,7 @@ export default function Index() {
               
                let phone_number=window.sessionStorage.getItem("phone_number");
               let res = await getRequest(api_2(phone_number));
-              if (res.data.state){
+              if (res.state){
               navigate("/loanapprove")
               }
               else{
@@ -112,7 +112,7 @@ export default function Index() {
             <Button variant="outlined" onClick={async (e)=>{
               let phone_number=window.sessionStorage.getItem("phone_number");
               let res = await getRequest(api_2(phone_number));
-              if (res.data.state){
+              if (res.state){
               navigate("/loanapprove")
               }
               else{
@@ -150,7 +150,7 @@ export default function Index() {
             <Button variant="outlined" onClick={async (e)=>{
               let phone_number=window.sessionStorage.getItem("phone_number");
               let res = await getRequest(api_2(phone_number));
-              if (res.data.state){
+              if (res.state){
               navigate("/loanapprove")
               }
               else{
