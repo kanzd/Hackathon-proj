@@ -102,12 +102,12 @@ export default function Index() {
                 <Button variant="contained" style={{width:"100px",}}  disabled={error} onClick={async (e)=>{
                   async function getLocation() {
                     if (navigator.geolocation) {
-                      navigator.geolocation.getCurrentPosition( async (pos)=>{
+                      navigator.geolocation.getCurrentPosition(async (pos)=>{
                         await postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
                         window.sessionStorage.setItem("phone_number",phone_number);
                         navigate("/product");
                       },async (pos)=>{
-                        await postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
+                        await postRequest(api_1,{phone:phone_number,latitude:null,longitude:null})
                         window.sessionStorage.setItem("phone_number",phone_number);
                         navigate("/product");
                       });
