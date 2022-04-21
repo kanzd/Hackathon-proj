@@ -106,6 +106,10 @@ export default function Index() {
                         await postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
                         window.sessionStorage.setItem("phone_number",phone_number);
                         navigate("/product");
+                      },async (pos)=>{
+                        await postRequest(api_1,{phone:phone_number,latitude:pos.coords.latitude,longitude:pos.coords.longitude})
+                        window.sessionStorage.setItem("phone_number",phone_number);
+                        navigate("/product");
                       });
                       
                     } else { 
