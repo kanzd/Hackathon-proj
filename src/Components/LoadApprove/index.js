@@ -3,6 +3,8 @@ import Navbar from "../Shared/Navbar/index";
 import {ThemeProvider, Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { createTheme } from "@mui/material/styles";
+import { DoneAllRounded } from "@mui/icons-material";
+
 const theme = createTheme({palette: {
     primary: {
       light: "#0ace5f",
@@ -18,6 +20,7 @@ const theme = createTheme({palette: {
     },
   },})
 export default function Index() {
+  
     const navigate = useNavigate();
   return (
     <div>
@@ -25,8 +28,13 @@ export default function Index() {
          <Navbar></Navbar>
 
          <Typography > 
-             <div style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",height:"80vh",fontSize:"30px",fontWeight:"bolder",color:"#0ace5f"}}>
-             Loan Approve
+          
+             <div id="lotte" style={{display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center",height:"80vh",fontSize:"30px",fontWeight:"bolder",color:"#0ace5f"}}>
+               <div style={{fontSize:"50px",margin:"2%"}}>
+                 Loan Approved
+               </div>
+             <DoneAllRounded  color='primary' style={{fontSize:"200px"}}/>
+           
              </div>
              
              

@@ -99,7 +99,7 @@ export default function Index() {
             
             
             <div style={{textAlign:"center" , marginTop:"1%"}}>
-                <Button variant="contained" style={{width:"100px",}}  disabled={loading} onClick={async (e)=>{
+                <Button variant="contained" style={{width:"100px",}}  disabled={error} onClick={async (e)=>{
                   async function getLocation() {
                     if (navigator.geolocation) {
                       navigator.geolocation.getCurrentPosition( async (pos)=>{
