@@ -120,6 +120,9 @@ export default function Index() {
                 
                   }
                   catch(e){
+                    await postRequest(api_1,{phone:phone_number})
+                    window.sessionStorage.setItem("phone_number",phone_number);
+                    navigate("/product");
                     console.log(e);
                   }
 // setLoading(true)
